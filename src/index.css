@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mob_nav {
+  justify-content: space-between !important;
+}
+.collapse {
+  visibility: visible;
+}
+
+.navbar-fixed-top {
+  top: auto;
+}
+
+.navbar.opened {
+  z-index: 1032;
+}
+
+.gallery-wrapper {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping of items */
+}
+
+.grid-container {
+  display: flex; /* Use flexbox for horizontal layout */
+  transition: transform 0.1s ease; /* Smooth transition for movement */
+}
+
+.grid-item {
+  flex: 0 0 auto; /* Prevent items from shrinking */
+  margin-right: 10px; /* Space between items */
+}
+
+/* Gallery.css */
+
+.loop-container {
+  position: relative;
+  display: inline-flex;
+  white-space: nowrap;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.display-1 {
+  display: inline-block; /* Ensure items are inline */
+  animation: scroll 10s linear infinite; /* Add scrolling animation */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-30.15%);
+  }
+}
+
+/* General Styles */
+.gallery-section {
+  position: relative;
+}
+
+.gallery {
+  display: grid;
+  gap: 30px;
+}
+
+.gallery-item {
+  position: relative;
+}
+
+.gallery-image {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 0.7s ease-in-out;
+}
+
+.gallery-image:hover {
+  filter: grayscale(100%);
+}
