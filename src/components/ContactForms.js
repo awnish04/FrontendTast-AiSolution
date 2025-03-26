@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
 import { Mail, PhoneCall, Send } from "lucide-react";
 const ContactForms = () => {
   const [formData, setFormData] = useState({
@@ -18,46 +16,6 @@ const ContactForms = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const loadingToast = toast.loading("Sending your message...");
-    try {
-      const response = await axios.post("http://localhost:5001/graphql", {
-        query: `
-          mutation {
-            createInquiry(
-              name: "${formData.name}",
-              email: "${formData.email}",
-              phoneNumber: "${formData.phoneNumber}",
-              companyName: "${formData.companyName}",
-              country: "${formData.country}",
-              jobTitle: "${formData.jobTitle}", 
-              jobDetails: "${formData.jobDetails}",
-              message: "${formData.message}"
-            ) {
-              message
-            }
-          }
-        `,
-      });
-      toast.success(response.data.data.createInquiry.message); // Success message
-      toast.dismiss(loadingToast); // Dismiss the loading toast
-      setFormData({
-        name: "",
-        email: "",
-        phoneNumber: "",
-        companyName: "",
-        country: "",
-        jobTitle: "",
-        jobDetails: "",
-        message: "",
-      });
-    } catch (error) {
-      toast.error("Failed to send message"); // Error message
-      toast.dismiss(loadingToast); // Dismiss the loading toast
-    }
-  };
-
   return (
     <section className="container mbr-fullscreen cid-uuGhZ50C2O">
       <div className="  mx-auto ">
@@ -72,7 +30,7 @@ const ContactForms = () => {
                 Our experienced team is ready to engage with you.
               </p>
 
-              <form onSubmit={handleSubmit}>
+              <form>
                 <div class="space-y-4 mt-8">
                   <div class="grid grid-cols-2 gap-6">
                     <input
